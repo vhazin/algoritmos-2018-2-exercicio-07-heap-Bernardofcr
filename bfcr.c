@@ -16,18 +16,27 @@ typedef struct celula{
 
 typedef struct Fila{
     int total;
-    cel *primeiro;
+    cel **primeiro;
 }fila;
 
 void addcel(){
     
 }
 
-void addlista(fila *lista, cel c){
-    lista=malloc(sizeof (fila));
-    lista->total=lista->total+1;
+cel heaping(){
+    cel celula;
+    
+    return celula;
 }
 
+/*
+void addlista(fila *lista, cel c){
+    *c
+    lista=malloc(sizeof (fila));
+    lista->total=lista->total+1;
+    lista->primeiro;
+}
+*/
 
 int main() {
     int n,i;
