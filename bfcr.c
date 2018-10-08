@@ -72,13 +72,13 @@ void addcel(cel *c,int i, char chr){
 }
 
 void printar (cel *c){
-    if (c!=NULL){
-        printf("(");
-        printar (c->esq);
-        printf("%c/%d",c->ch,c->valor);
-        printar (c->dir);
-        printf (")");
-    }return;
+    if (c==NULL)
+        return;
+    printf("(");
+    printar (c->esq);
+    printf("%c/%d",c->ch,c->valor);
+    printar (c->dir);
+    printf (")");
 }
 
 
