@@ -9,12 +9,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 typedef struct celula{
     int valor;
     char ch;
-    struct celula *proximo;
+    struct celula *esq;
+    struct celula *dir;
 }cel;
-
+/*
 typedef struct Fila{
     int total;
     cel *primeiro;
@@ -42,43 +44,64 @@ void addcel(fila *f, int i, char c){
     return;
 }
 
-
-cel heaping(){
-    cel celula;
-    
-    return celula;
-}
-
 void addlista(lista *l,fila *f){
-    l=malloc(sizeof(lista));
+    cel *cl=malloc(sizeof(cel));
+    
     if (l->primeiro==NULL){
         l->primeiro=f;
-        f->proxima=NULL;
+        f->proximo=NULL;
     }
-    l->proxima=f;
+    l->ultimo->proximo=f;
+    l->ultimo=f;
+}*/
+
+void addcel(cel *c,int i, char chr){
+    if (c==NULL){
+        c=malloc(sizeof(cel));
+        c->valor=i;
+        c->ch=chr;
+        c->esq=NULL;
+        c->dir=NULL;
+        return;
+    }
+   if(i<c->valor)
+        addcel(c->esq,i,chr);
+    else
+        addcel(c->dir,i,chr);
+    return;
 }
+
+void printar (cel *c){
+    if (c!=NULL){
+        printf("(");
+        printar (c->esq);
+        printf("%c/%d",c->ch,c->valor);
+        printar (c->dir);
+        printf (")");
+    }return;
+}
+
 
 int main() {
     int n,i;
     int add;
     char addchar;
-    fila *f;
-    lista *l;
+    cel *f;
     while (1){
         scanf ("%d",&n);
+        f=NULL;
         if (n==0)
-            break;
+            return 0;
         i=0;
         while (i<n){
-            if (i==0){
-                addlista(l,f);
-            }
             scanf ("%c/%d",&addchar,&add);
             addcel(f,add,addchar);
-    
             i++;
         }
+        printar(f);
+        printf("\n");
     }
     
     return 0;
 }
+
